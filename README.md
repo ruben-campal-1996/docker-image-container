@@ -25,3 +25,20 @@ Dentro del desarrollo del ejercicio se intentará trabajar de forma rigurosa los
 Para esto, vamos a ejecutar el comando: `docker pull mysql:8.0-debian`
 
 ![Importación imagen](./src/assets/Añadir-imagen.jpg)
+
+2- Generar un container utilizando la imagen que hemos importado:
+    - `docker run --name nombre-proyecto -e MYSQL_ROOT_PASSWORD=contraseña -d mysql:8.0-debian`
+
+### Explicación de comando
+docker | Ejecuta el cliente de Docker
+run | Crea e inicial un nuevo contenedor a partir de una imagen
+--name nombre-proyecto | Asigna nombre al contenedor
+-e MYSQL_ROOT_PASSWORD=contraseña | Define la variable de entorno como MYSQL_ROOT_PASSWORD y establece una contraseña del usuario root de MySQL
+-d Ejecuta el contenedor en modo detached (segundo plano)
+ mysql:tag | Especifica la imagen y su versión (tag) que se utilizará para crear el contenedor
+
+![Añadir container](/src/assets/Añadir-container.jpg)
+
+Nota: Puedes apoyarte de los siguientes comandos para saber que imagenes o containers tienes:
+`docker images` - imágenes
+`docker ps`- contenedores
