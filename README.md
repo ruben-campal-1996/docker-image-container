@@ -64,3 +64,29 @@ docker ps - contenedores
 
 Le damos a finalizar para aplicar todos los cambios, seleccionamos la DB, le damos F4 para volver a Connection Settings y le damos a Probar conexión. Si has introducido bien los datos debería salirte algo como esto:
 ![Foto Dbeaver test conexionDB](src/assets/MySQL-test-connection.jpg)
+
+4. Introducimos en un terminal SQL la tabla y los datos:
+![Foto Dbeaver terminal SQL](src/assets/abrir_sqlterminal.jpg)
+- Seleccionamos los ficheros SQL del proyecto.
+table_pets.sql
+```
+CREATE TABLE pets (
+    id_pet INTEGER PRIMARY KEY,
+    name VARCHAR(50),
+    animal_type CHAR(50),
+    race CHAR(50),
+    age INTEGER
+)
+```
+- Ahora introducimos unos datos.
+insert_pets.sql
+```
+INSERT INTO pets(name, animal_type, race, age)
+VALUE
+('Nube', 'Cat', 'European', 3),
+('Osito', 'Dog', 'Golden Retrieber', 7),
+('Paca','Bear','Cantabric', 13),
+('Tola','Bear','Cantabric', 14);
+```
+
+
