@@ -89,4 +89,41 @@ VALUE
 ('Tola','Bear','Cantabric', 14);
 ```
 
+## Subir datos a DockerHub
 
+Después de informarme un poco sobre el tema, decidí cambiar la estructura del proyecto para que cuando alguien haga un futuro pull de esta imagen se inicialice con los datos y se ejecute automáticamente el fichero .sql con los datos pertinentes
+
+ficheros:
+* dockerfile
+```
+FROM mysql:8.0-debian
+
+COPY init.sql /docker-entrypoint-initdb.d/
+```
+* init.sql
+```
+CREATE DATABASE petsdb;
+USE petsdb;
+CREATE TABLE pets (
+    id_pet INTEGER PRIMARY KEY,
+    name VARCHAR(50),
+    animal_type CHAR(50),
+    race CHAR(50),
+    age INTEGER
+);
+INSERT INTO pets(name, animal_type, race, age)
+VALUE
+('Nube', 'Cat', 'European', 3),
+('Osito', 'Dog', 'Golden Retrieber', 7),
+('Paca','Bear','Cantabric', 13),
+('Tola','Bear','Cantabric', 14);
+```
+
+
+1. Arrancamos el contenedor si hemos cerrado sesión con `docker start <nombre-contenedor>`
+2. `docker build -t tusuario/mysql-pets-db:1.0`
+3. Con esto preparado, hacemos login con `docker login`
+4. `docker push tusuario/mysql-pets-db:1.0`
+
+Si has podido tirar todo esto, enhorabuena, tienes tu imagen docker preparada y subida.
+![Foto DockerHub](src/assets/dockerHub.jpg)
